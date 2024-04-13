@@ -1,0 +1,37 @@
+{% extends './base.html' %}
+{%block showdata%}
+<h1>update</h1>
+<form id="updateForm">
+    {% csrf_token %}
+    <!-- Include fields you allow to be updated, for example: -->
+    <input type="text" name="firstName" placeholder="First Name"><br>
+    <input type="text" name="lastName" placeholder="Last Name"><br>
+    <input type="email" name="email" placeholder="Email"><br>
+    <!-- Add more fields as necessary -->
+    <button type="submit">Update Profile</button>
+</form>
+
+
+<script>
+    $(document).ready(function() {
+        $('#updateForm').submit(function(e) {
+            e.preventDefault();
+            $.ajax({
+                type: 'PATCH',
+                url: '/api/update_student_profile/',
+                csrfmiddlewaretoken:"{{csrf_token}}",
+                data: $(this).serialize(),
+                headers: {
+                    'Authorization': 'Bearer YOUR_ACCESS_TOKEN'  // You need to replace YOUR_ACCESS_TOKEN with actual token
+                },
+                success: function(response) {
+                    alert('Profile updated successfully.');
+                },
+                error: function(response) {
+                    alert('Error updating profile: ' + response.responseText);
+                }
+            });
+        });
+    });
+</script>
+{%endblock showdata%}

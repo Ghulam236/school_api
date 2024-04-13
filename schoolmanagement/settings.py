@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-5*!b%9ha6$!q*f9lo#0^$4c*o&@a#qwf)1fb=v&zk&=g9@9em+
 DEBUG = True
 
 ALLOWED_HOSTS = []
-AUTH_USER_MODEL = 'student.Student_User'
+AUTH_USER_MODEL = 'student.StudentUser'
 
 
 # Application definition
@@ -39,8 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'student',
     'rest_framework',
+    'student',
+    
 ]
 
 MIDDLEWARE = [
@@ -58,7 +59,7 @@ ROOT_URLCONF = 'schoolmanagement.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR /'templates'],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

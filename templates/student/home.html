@@ -1,0 +1,11 @@
+{% extends './base.html' %}
+{%block showdata%}
+<div class="buttons">
+    <a href="{% url 'login_view' %}" class="btn btn-primary">Login</a>
+    <a href="{% url 'register_view' %}" class="btn btn-secondary">Signup</a>
+</div>
+<h1>show all data</h1>
+{% for stu in students %}
+<p>{{stu.firstName}}<br>{{stu.lastName}}</p>
+{% endfor %}
+{%endblock showdata%}

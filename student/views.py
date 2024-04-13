@@ -6,8 +6,21 @@ from rest_framework.response import Response
 from rest_framework import status
 from rest_framework_simplejwt.tokens import RefreshToken
 from .serializers import StudentSerializer
-from .models import Student_User,Stu_Class
+from .models import StudentUser,StuClass
 # Create your views here.
+def home(request):
+    data=StudentUser.objects.all()
+    print(data)
+   
+    return render(request,'student/home.html',{"students":data})
+def login_view(request):
+     return render(request,'student/login.html')
+def register_view(request):
+    all_class=StuClass.objects.all()
+    return render(request,'student/signup.html',{"classes":all_class})
+def update_view(request):
+     return render(request,'student/update.html')
+
 @api_view(['POST'])
 def register_student(request):
     data = request.data
